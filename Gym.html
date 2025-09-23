@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gym Pricing Table</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f5f6fa;
+      margin: 0;
+      padding: 20px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+    }
+
+    .container {
+      text-align: center;
+    }
+
+    .toggle-switch {
+      margin-bottom: 20px;
+    }
+
+    .plans {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      justify-content: center;
+    }
+
+    .plan {
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      padding: 20px;
+      width: 280px;
+      transition: transform 0.3s ease;
+    }
+
+    .plan:hover {
+      transform: translateY(-8px);
+    }
+
+    .plan.popular {
+      border: 2px solid #007bff;
+      animation: pulse 1.5s infinite;
+    }
+
+    @keyframes pulse {
+      0% { box-shadow: 0 0 0 0 rgba(0,123,255,0.7); }
+      70% { box-shadow: 0 0 0 15px rgba(0,123,255,0); }
+      100% { box-shadow: 0 0 0 0 rgba(0,123,255,0); }
+    }
+
+    .price {
+      font-size: 24px;
+      font-weight: bold;
+      margin: 15px 0;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 10px 20px;
+      background: #007bff;
+      color: white;
+      border-radius: 6px;
+      text-decoration: none;
+      transition: background 0.3s ease;
+    }
+
+    .btn:hover {
+      background: #0056b3;
+    }
+
+    @media (max-width: 768px) {
+      .plans {
+        flex-direction: column;
+        align-items: center;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Gym Membership Plans</h1>
+
+    <!-- Toggle -->
+    <div class="toggle-switch">
+      <label>
+        <input type="checkbox" id="toggle"> Yearly Billing
+      </label>
+    </div>
+
+    <!-- Plans -->
+    <div class="plans">
+      <div class="plan">
+        <h2>Basic</h2>
+        <p class="price" data-monthly="$20/month" data-yearly="$200/year">$20/month</p>
+        <p>Access to gym equipment</p>
+        <a href="#" class="btn">Choose</a>
+      </div>
+
+      <div class="plan popular">
+        <h2>Standard</h2>
+        <p class="price" data-monthly="$40/month" data-yearly="$400/year">$40/month</p>
+        <p>Gym + Group Classes</p>
+        <a href="#" class="btn">Choose</a>
+      </div>
+
+      <div class="plan">
+        <h2>Premium</h2>
+        <p class="price" data-monthly="$60/month" data-yearly="$600/year">$60/month</p>
+        <p>All access + Personal Trainer</p>
+        <a href="#" class="btn">Choose</a>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const toggle = document.getElementById("toggle");
+    const prices = document.querySelectorAll(".price");
+
+    toggle.addEventListener("change", () => {
+      prices.forEach(price => {
+        price.textContent = toggle.checked ? price.dataset.yearly : price.dataset.monthly;
+      });
+    });
+  </script>
+</body>
+</html>
